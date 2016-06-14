@@ -1,0 +1,27 @@
+
+<%= form_for @article , html: { multipart: true } do |f| %>
+
+  <% if @article.errors.full_messages.any? %>
+    <% @article.errors.full_messages.each do |error_message| %>
+    <%= error_message if @article.errors.full_messages.first == error_message %> <br />
+    <% end %>
+  <% end %>
+
+  <%= f.select :status, Article.statuses.keys.to_a %>
+  <br>
+  Title:  <%= f.text_field :title %>
+  <br/>
+  <br/>
+  Body:   <%= f.text_area :body %>     <br/>
+
+  <br/>
+  <br/>
+
+    Photo: <%= f.file_field :photos %>
+  <br>
+
+  <%= f.submit %>
+
+<% end %>
+
+
